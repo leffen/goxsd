@@ -1,0 +1,317 @@
+([]main.xsdSchema) (len=1 cap=1) {
+ (main.xsdSchema) {
+  XMLName: (xml.Name) {
+   Space: (string) (len=32) "http://www.w3.org/2001/XMLSchema",
+   Local: (string) (len=6) "schema"
+  },
+  Ns: (string) (len=31) "https://mediaarea.net/mediainfo",
+  Imports: ([]main.xsdImport) <nil>,
+  Elements: ([]main.xsdElement) (len=1 cap=1) {
+   (main.xsdElement) {
+    Name: (string) (len=9) "MediaInfo",
+    Type: (string) (len=13) "mediainfoType",
+    Default: (string) "",
+    Min: (string) "",
+    Max: (string) "",
+    Annotation: (string) "",
+    ComplexType: (*main.xsdComplexType)(<nil>),
+    SimpleType: (*main.xsdSimpleType)(<nil>)
+   }
+  },
+  ComplexTypes: ([]main.xsdComplexType) (len=5 cap=8) {
+   (main.xsdComplexType) {
+    Name: (string) (len=13) "mediainfoType",
+    Abstract: (string) "",
+    Annotation: (string) "",
+    Sequence: ([]main.xsdElement) (len=2 cap=2) {
+     (main.xsdElement) {
+      Name: (string) (len=19) "creatingApplication",
+      Type: (string) (len=12) "creationType",
+      Default: (string) "",
+      Min: (string) (len=1) "0",
+      Max: (string) (len=1) "1",
+      Annotation: (string) "",
+      ComplexType: (*main.xsdComplexType)(<nil>),
+      SimpleType: (*main.xsdSimpleType)(<nil>)
+     },
+     (main.xsdElement) {
+      Name: (string) (len=15) "creatingLibrary",
+      Type: (string) (len=12) "creationType",
+      Default: (string) "",
+      Min: (string) (len=1) "0",
+      Max: (string) (len=1) "1",
+      Annotation: (string) "",
+      ComplexType: (*main.xsdComplexType)(<nil>),
+      SimpleType: (*main.xsdSimpleType)(<nil>)
+     }
+    },
+    Attributes: ([]main.xsdAttribute) (len=1 cap=1) {
+     (main.xsdAttribute) {
+      Name: (string) (len=7) "version",
+      Type: (string) "",
+      Use: (string) "",
+      Annotation: (string) ""
+     }
+    },
+    ComplexContent: (*main.xsdComplexContent)(<nil>),
+    SimpleContent: (*main.xsdSimpleContent)(<nil>)
+   },
+   (main.xsdComplexType) {
+    Name: (string) (len=9) "mediaType",
+    Abstract: (string) "",
+    Annotation: (string) "",
+    Sequence: ([]main.xsdElement) (len=1 cap=1) {
+     (main.xsdElement) {
+      Name: (string) (len=5) "track",
+      Type: (string) (len=9) "trackType",
+      Default: (string) "",
+      Min: (string) (len=1) "0",
+      Max: (string) (len=9) "unbounded",
+      Annotation: (string) "",
+      ComplexType: (*main.xsdComplexType)(<nil>),
+      SimpleType: (*main.xsdSimpleType)(<nil>)
+     }
+    },
+    Attributes: ([]main.xsdAttribute) (len=1 cap=1) {
+     (main.xsdAttribute) {
+      Name: (string) (len=3) "ref",
+      Type: (string) "",
+      Use: (string) "",
+      Annotation: (string) ""
+     }
+    },
+    ComplexContent: (*main.xsdComplexContent)(<nil>),
+    SimpleContent: (*main.xsdSimpleContent)(<nil>)
+   },
+   (main.xsdComplexType) {
+    Name: (string) (len=9) "trackType",
+    Abstract: (string) "",
+    Annotation: (string) "",
+    Sequence: ([]main.xsdElement) (len=1 cap=1) {
+     (main.xsdElement) {
+      Name: (string) (len=5) "extra",
+      Type: (string) (len=9) "extraType",
+      Default: (string) "",
+      Min: (string) (len=1) "0",
+      Max: (string) (len=1) "1",
+      Annotation: (string) "",
+      ComplexType: (*main.xsdComplexType)(<nil>),
+      SimpleType: (*main.xsdSimpleType)(<nil>)
+     }
+    },
+    Attributes: ([]main.xsdAttribute) (len=2 cap=2) {
+     (main.xsdAttribute) {
+      Name: (string) (len=4) "type",
+      Type: (string) "",
+      Use: (string) (len=8) "required",
+      Annotation: (string) (len=96) "Documents the type of encoded media with the track, ie: General, Video, Audio, Text, Image, etc."
+     },
+     (main.xsdAttribute) {
+      Name: (string) (len=9) "typeorder",
+      Type: (string) "",
+      Use: (string) "",
+      Annotation: (string) (len=154) "If there is more than one track of the same type (i.e. four audio tracks) this attribute will number them according to storage order within the bitstream."
+     }
+    },
+    ComplexContent: (*main.xsdComplexContent)(<nil>),
+    SimpleContent: (*main.xsdSimpleContent)(<nil>)
+   },
+   (main.xsdComplexType) {
+    Name: (string) (len=9) "extraType",
+    Abstract: (string) "",
+    Annotation: (string) "",
+    Sequence: ([]main.xsdElement) <nil>,
+    Attributes: ([]main.xsdAttribute) <nil>,
+    ComplexContent: (*main.xsdComplexContent)(<nil>),
+    SimpleContent: (*main.xsdSimpleContent)(<nil>)
+   },
+   (main.xsdComplexType) {
+    Name: (string) (len=12) "creationType",
+    Abstract: (string) "",
+    Annotation: (string) "",
+    Sequence: ([]main.xsdElement) <nil>,
+    Attributes: ([]main.xsdAttribute) <nil>,
+    ComplexContent: (*main.xsdComplexContent)(<nil>),
+    SimpleContent: (*main.xsdSimpleContent)(0xc420066900)({
+     Extension: (*main.xsdExtension)(0xc4201bf700)({
+      Base: (string) (len=10) "xsd:string",
+      Attributes: ([]main.xsdAttribute) <nil>,
+      Sequence: ([]main.xsdElement) <nil>
+     }),
+     Restriction: (*main.xsdRestriction)(<nil>)
+    })
+   }
+  },
+  SimpleTypes: ([]main.xsdSimpleType) <nil>
+ }
+}
+(*main.builder)(0xc42008ec60)({
+ schemas: ([]main.xsdSchema) (len=1 cap=1) {
+  (main.xsdSchema) {
+   XMLName: (xml.Name) {
+    Space: (string) (len=32) "http://www.w3.org/2001/XMLSchema",
+    Local: (string) (len=6) "schema"
+   },
+   Ns: (string) (len=31) "https://mediaarea.net/mediainfo",
+   Imports: ([]main.xsdImport) <nil>,
+   Elements: ([]main.xsdElement) (len=1 cap=1) {
+    (main.xsdElement) {
+     Name: (string) (len=9) "MediaInfo",
+     Type: (string) (len=13) "mediainfoType",
+     Default: (string) "",
+     Min: (string) "",
+     Max: (string) "",
+     Annotation: (string) "",
+     ComplexType: (*main.xsdComplexType)(<nil>),
+     SimpleType: (*main.xsdSimpleType)(<nil>)
+    }
+   },
+   ComplexTypes: ([]main.xsdComplexType) (len=5 cap=8) {
+    (main.xsdComplexType) {
+     Name: (string) (len=13) "mediainfoType",
+     Abstract: (string) "",
+     Annotation: (string) "",
+     Sequence: ([]main.xsdElement) (len=2 cap=2) {
+      (main.xsdElement) {
+       Name: (string) (len=19) "creatingApplication",
+       Type: (string) (len=12) "creationType",
+       Default: (string) "",
+       Min: (string) (len=1) "0",
+       Max: (string) (len=1) "1",
+       Annotation: (string) "",
+       ComplexType: (*main.xsdComplexType)(<nil>),
+       SimpleType: (*main.xsdSimpleType)(<nil>)
+      },
+      (main.xsdElement) {
+       Name: (string) (len=15) "creatingLibrary",
+       Type: (string) (len=12) "creationType",
+       Default: (string) "",
+       Min: (string) (len=1) "0",
+       Max: (string) (len=1) "1",
+       Annotation: (string) "",
+       ComplexType: (*main.xsdComplexType)(<nil>),
+       SimpleType: (*main.xsdSimpleType)(<nil>)
+      }
+     },
+     Attributes: ([]main.xsdAttribute) (len=1 cap=1) {
+      (main.xsdAttribute) {
+       Name: (string) (len=7) "version",
+       Type: (string) "",
+       Use: (string) "",
+       Annotation: (string) ""
+      }
+     },
+     ComplexContent: (*main.xsdComplexContent)(<nil>),
+     SimpleContent: (*main.xsdSimpleContent)(<nil>)
+    },
+    (main.xsdComplexType) {
+     Name: (string) (len=9) "mediaType",
+     Abstract: (string) "",
+     Annotation: (string) "",
+     Sequence: ([]main.xsdElement) (len=1 cap=1) {
+      (main.xsdElement) {
+       Name: (string) (len=5) "track",
+       Type: (string) (len=9) "trackType",
+       Default: (string) "",
+       Min: (string) (len=1) "0",
+       Max: (string) (len=9) "unbounded",
+       Annotation: (string) "",
+       ComplexType: (*main.xsdComplexType)(<nil>),
+       SimpleType: (*main.xsdSimpleType)(<nil>)
+      }
+     },
+     Attributes: ([]main.xsdAttribute) (len=1 cap=1) {
+      (main.xsdAttribute) {
+       Name: (string) (len=3) "ref",
+       Type: (string) "",
+       Use: (string) "",
+       Annotation: (string) ""
+      }
+     },
+     ComplexContent: (*main.xsdComplexContent)(<nil>),
+     SimpleContent: (*main.xsdSimpleContent)(<nil>)
+    },
+    (main.xsdComplexType) {
+     Name: (string) (len=9) "trackType",
+     Abstract: (string) "",
+     Annotation: (string) "",
+     Sequence: ([]main.xsdElement) (len=1 cap=1) {
+      (main.xsdElement) {
+       Name: (string) (len=5) "extra",
+       Type: (string) (len=9) "extraType",
+       Default: (string) "",
+       Min: (string) (len=1) "0",
+       Max: (string) (len=1) "1",
+       Annotation: (string) "",
+       ComplexType: (*main.xsdComplexType)(<nil>),
+       SimpleType: (*main.xsdSimpleType)(<nil>)
+      }
+     },
+     Attributes: ([]main.xsdAttribute) (len=2 cap=2) {
+      (main.xsdAttribute) {
+       Name: (string) (len=4) "type",
+       Type: (string) "",
+       Use: (string) (len=8) "required",
+       Annotation: (string) (len=96) "Documents the type of encoded media with the track, ie: General, Video, Audio, Text, Image, etc."
+      },
+      (main.xsdAttribute) {
+       Name: (string) (len=9) "typeorder",
+       Type: (string) "",
+       Use: (string) "",
+       Annotation: (string) (len=154) "If there is more than one track of the same type (i.e. four audio tracks) this attribute will number them according to storage order within the bitstream."
+      }
+     },
+     ComplexContent: (*main.xsdComplexContent)(<nil>),
+     SimpleContent: (*main.xsdSimpleContent)(<nil>)
+    },
+    (main.xsdComplexType) {
+     Name: (string) (len=9) "extraType",
+     Abstract: (string) "",
+     Annotation: (string) "",
+     Sequence: ([]main.xsdElement) <nil>,
+     Attributes: ([]main.xsdAttribute) <nil>,
+     ComplexContent: (*main.xsdComplexContent)(<nil>),
+     SimpleContent: (*main.xsdSimpleContent)(<nil>)
+    },
+    (main.xsdComplexType) {
+     Name: (string) (len=12) "creationType",
+     Abstract: (string) "",
+     Annotation: (string) "",
+     Sequence: ([]main.xsdElement) <nil>,
+     Attributes: ([]main.xsdAttribute) <nil>,
+     ComplexContent: (*main.xsdComplexContent)(<nil>),
+     SimpleContent: (*main.xsdSimpleContent)(0xc420066900)({
+      Extension: (*main.xsdExtension)(0xc4201bf700)({
+       Base: (string) (len=10) "xsd:string",
+       Attributes: ([]main.xsdAttribute) <nil>,
+       Sequence: ([]main.xsdElement) <nil>
+      }),
+      Restriction: (*main.xsdRestriction)(<nil>)
+     })
+    }
+   },
+   SimpleTypes: ([]main.xsdSimpleType) <nil>
+  }
+ },
+ complTypes: (map[string]main.xsdComplexType) {
+ },
+ simplTypes: (map[string]main.xsdSimpleType) {
+ }
+})
+Root item = &{Name:MediaInfo Type:MediaInfo List:false Cdata:false Attribs:[{Name:version Type:}] Children:[0xc4200714a0 0xc420071500]}
+&{MediaInfo MediaInfo false false [{version }] [0xc4200714a0 0xc420071500]}
+  &{creatingApplication string false false [] []}
+  &{creatingLibrary string false false [] []}
+Root name MediaInfo
+Child &{Name:creatingApplication Type:string List:false Cdata:false Attribs:[] Children:[]}  is_primitive =true 
+Child &{Name:creatingLibrary Type:string List:false Cdata:false Attribs:[] Children:[]}  is_primitive =true 
+// generated by goxsd; DO NOT EDIT
+
+package goxsd
+
+// MediaInfo is generated from an XSD element
+type MediaInfo struct {
+	Version             `xml:"version,attr"`
+	CreatingApplication string `xml:"creatingApplication"`
+	CreatingLibrary     string `xml:"creatingLibrary"`
+}

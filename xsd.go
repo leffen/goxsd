@@ -44,6 +44,16 @@ func parse(r io.Reader, fname string) ([]xsdSchema, error) {
 		return nil, err
 	}
 
+	for _, c := range schema.ComplexTypes {
+		fmt.Printf("Complex Type = %s\n", c.Name)
+		fmt.Printf(" Sequence = %+v\n", c.Sequence)
+
+	}
+
+	for _, c := range schema.SimpleTypes {
+		fmt.Printf("Stype = %s\n", c.Name)
+	}
+
 	schemas := []xsdSchema{schema}
 	dir, file := filepath.Split(fname)
 	parsedFiles[file] = struct{}{}
@@ -57,17 +67,29 @@ func parse(r io.Reader, fname string) ([]xsdSchema, error) {
 		}
 		schemas = append(schemas, s...)
 	}
+
 	return schemas, nil
 }
 
 // xsdSchema is the root of our Go representation of an XSD schema.
 type xsdSchema struct {
-	XMLName      xml.Name
-	Ns           string           `xml:"xmlns,attr"`
-	Imports      []xsdImport      `xml:"import"`
-	Elements     []xsdElement     `xml:"element"`
-	ComplexTypes []xsdComplexType `xml:"complexType"`
-	SimpleTypes  []xsdSimpleType  `xml:"simpleType"`
+	XMLName xml.Name
+
+	Tns                string           `xml:"xmlns tns,attr"`
+	Xs                 string           `xml:"xmlns xs,attr"`
+	Version            string           `xml:"version,attr"`
+	TargetNamespace    string           `xml:"targetNamespace,attr"`
+	ElementFormDefault string           `xml:"elementFormDefault,attr"`
+	Includes           []xsdInclude     `xml:"include"`
+	Ns                 string           `xml:"xmlns,attr"`
+	Imports            []xsdImport      `xml:"import"`
+	Elements           []xsdElement     `xml:"element"`
+	ComplexTypes       []xsdComplexType `xml:"complexType"`
+	SimpleTypes        []xsdSimpleType  `xml:"simpleType"`
+}
+
+type xsdInclude struct {
+	SchemaLocation string `xml:"schemaLocation,attr"`
 }
 
 // ns parses the namespace from a value in the expected format
@@ -85,7 +107,10 @@ type xsdImport struct {
 }
 
 type xsdElement struct {
+	XMLName     xml.Name        `xml:"element"`
 	Name        string          `xml:"name,attr"`
+	Nillable    bool            `xml:"nillable,attr"`
+	Ref         string          `xml:"ref,attr"`
 	Type        string          `xml:"type,attr"`
 	Default     string          `xml:"default,attr"`
 	Min         string          `xml:"minOccurs,attr"`
@@ -93,6 +118,7 @@ type xsdElement struct {
 	Annotation  string          `xml:"annotation>documentation"`
 	ComplexType *xsdComplexType `xml:"complexType"` // inline complex type
 	SimpleType  *xsdSimpleType  `xml:"simpleType"`  // inline simple type
+	Groups      []xsdGroup      `xml:"group"`
 }
 
 func (e xsdElement) isList() bool {
@@ -103,11 +129,23 @@ func (e xsdElement) inlineType() bool {
 	return e.Type == ""
 }
 
+// xsdGroup element is used to define a group of elements to be used in complex type definitions.
+type xsdGroup struct {
+	Name     string       `xml:"name,attr"`
+	Ref      string       `xml:"ref,attr"`
+	Sequence []xsdElement `xml:"sequence>element"`
+	Choice   []xsdElement `xml:"choice>element"`
+	All      []xsdElement `xml:"all>element"`
+}
+
 type xsdComplexType struct {
 	Name           string             `xml:"name,attr"`
 	Abstract       string             `xml:"abstract,attr"`
 	Annotation     string             `xml:"annotation>documentation"`
 	Sequence       []xsdElement       `xml:"sequence>element"`
+	Choice         []xsdElement       `xml:"choice>element"`
+	SequenceChoice []xsdElement       `xml:"sequence>choice>element"`
+	All            []xsdElement       `xml:"all>element"`
 	Attributes     []xsdAttribute     `xml:"attribute"`
 	ComplexContent *xsdComplexContent `xml:"complexContent"`
 	SimpleContent  *xsdSimpleContent  `xml:"simpleContent"`
