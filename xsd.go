@@ -106,7 +106,7 @@ type xsdElement struct {
 	Min         string          `xml:"minOccurs,attr"`
 	Max         string          `xml:"maxOccurs,attr"`
 	Annotation  string          `xml:"annotation>documentation"`
-	Sequence    []xsdElement    `xml:"sequence>choice"`
+	Sequence    []xsdElement    `xml:"sequence>element"`
 	Choice      []xsdElement    `xml:"choice>element"`
 	ComplexType *xsdComplexType `xml:"complexType"` // inline complex type
 	SimpleType  *xsdSimpleType  `xml:"simpleType"`  // inline simple type
@@ -131,10 +131,12 @@ type xsdGroup struct {
 }
 
 type xsdComplexType struct {
-	Name           string             `xml:"name,attr"`
-	Abstract       string             `xml:"abstract,attr"`
-	Annotation     string             `xml:"annotation>documentation"`
-	Sequence       []xsdElement       `xml:"sequence>choice>element"`
+	Name            string       `xml:"name,attr"`
+	Abstract        string       `xml:"abstract,attr"`
+	Annotation      string       `xml:"annotation>documentation"`
+	Sequence        []xsdElement `xml:"sequence>choice>element"`
+	SequenceElement []xsdElement `xml:"sequence>element"`
+
 	Choice         []xsdElement       `xml:"choice"`
 	All            []xsdElement       `xml:"all>element"`
 	Attributes     []xsdAttribute     `xml:"attribute"`

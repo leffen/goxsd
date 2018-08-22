@@ -174,6 +174,12 @@ func (b *builder) buildFromComplexType(xelem *xmlTree, t xsdComplexType) {
 		}
 	}
 
+	if t.SequenceElement != nil { // Does the element have children?
+		for _, e := range t.SequenceElement {
+			xelem.Children = append(xelem.Children, b.buildFromElement(e))
+		}
+	}
+
 	if t.Attributes != nil {
 		b.buildFromAttributes(xelem, t.Attributes)
 	}
