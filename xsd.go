@@ -44,16 +44,6 @@ func parse(r io.Reader, fname string) ([]xsdSchema, error) {
 		return nil, err
 	}
 
-	for _, c := range schema.ComplexTypes {
-		fmt.Printf("Complex Type = %s\n", c.Name)
-		fmt.Printf(" Sequence = %+v\n", c.Sequence)
-
-	}
-
-	for _, c := range schema.SimpleTypes {
-		fmt.Printf("Stype = %s\n", c.Name)
-	}
-
 	schemas := []xsdSchema{schema}
 	dir, file := filepath.Split(fname)
 	parsedFiles[file] = struct{}{}
@@ -116,6 +106,8 @@ type xsdElement struct {
 	Min         string          `xml:"minOccurs,attr"`
 	Max         string          `xml:"maxOccurs,attr"`
 	Annotation  string          `xml:"annotation>documentation"`
+	Sequence    []xsdElement    `xml:"sequence>choice"`
+	Choice      []xsdElement    `xml:"choice>element"`
 	ComplexType *xsdComplexType `xml:"complexType"` // inline complex type
 	SimpleType  *xsdSimpleType  `xml:"simpleType"`  // inline simple type
 	Groups      []xsdGroup      `xml:"group"`
@@ -133,7 +125,7 @@ func (e xsdElement) inlineType() bool {
 type xsdGroup struct {
 	Name     string       `xml:"name,attr"`
 	Ref      string       `xml:"ref,attr"`
-	Sequence []xsdElement `xml:"sequence>element"`
+	Sequence []xsdElement `xml:"sequence>choice"`
 	Choice   []xsdElement `xml:"choice>element"`
 	All      []xsdElement `xml:"all>element"`
 }
@@ -142,9 +134,8 @@ type xsdComplexType struct {
 	Name           string             `xml:"name,attr"`
 	Abstract       string             `xml:"abstract,attr"`
 	Annotation     string             `xml:"annotation>documentation"`
-	Sequence       []xsdElement       `xml:"sequence>element"`
-	Choice         []xsdElement       `xml:"choice>element"`
-	SequenceChoice []xsdElement       `xml:"sequence>choice>element"`
+	Sequence       []xsdElement       `xml:"sequence>choice>element"`
+	Choice         []xsdElement       `xml:"choice"`
 	All            []xsdElement       `xml:"all>element"`
 	Attributes     []xsdAttribute     `xml:"attribute"`
 	ComplexContent *xsdComplexContent `xml:"complexContent"`
